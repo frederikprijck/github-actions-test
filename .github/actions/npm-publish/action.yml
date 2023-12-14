@@ -1,0 +1,14 @@
+name: Publish release to npm
+
+inputs:
+  require-build:
+    default: true
+
+runs:
+  using: composite
+
+  steps:
+    - name: Install dependencies
+      if: inputs.require-build == 'true'
+      shell: bash
+      run: echo "REQUIRING BUILD"
