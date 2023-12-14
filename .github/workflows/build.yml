@@ -30,5 +30,7 @@ jobs:
         with:
           node-version: 18
 
-      - name: List node version
-        run: node --version
+      # Publish the release to npm
+      - uses: ./.github/actions/npm-publish
+        with:
+          require-build: true
