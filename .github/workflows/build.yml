@@ -10,6 +10,9 @@ on:
 permissions:
   contents: read
 
+env:
+  ProjectPaths: "['src/Auth0.Core/Auth0.Core.csproj', 'src/Auth0.AuthenticationApi/Auth0.AuthenticationApi.csproj']"
+  
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
@@ -25,17 +28,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
     
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      # Publish the release to npm
-      - uses: ./.github/actions/npm-publish
-        with:
-          require-build: true
-          
-      # Publish the release to npm
-      - uses: ./.github/actions/npm-publish
-        with:
-          require-build: false
+      - name: Publish NuGet package
+        run: |
+          foreach($file in (ConvertTo-Json "${{ env.ProjectPaths }}")) {
+              Write-Host "file: $file"
+          }
