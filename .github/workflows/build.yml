@@ -34,3 +34,8 @@ jobs:
       - uses: ./.github/actions/npm-publish
         with:
           require-build: true
+          
+      # Publish the release to npm
+      - uses: ./.github/actions/npm-publish
+        with:
+          require-build: false
