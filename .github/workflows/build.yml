@@ -30,6 +30,6 @@ jobs:
     
       - name: Publish NuGet package
         run: |
-          foreach($file in (ConvertTo-Json "${{ env.ProjectPaths }}")) {
+          foreach ($file in (ConvertTo-Json -AsArray "${{ env.ProjectPaths }}")) {
               Write-Host "file: $file"
           }
