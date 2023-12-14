@@ -31,6 +31,6 @@ jobs:
       - name: Publish NuGet package
         shell: pwsh
         run: |
-          foreach ($file in (ConvertTo-Json -InputObject "${{ env.ProjectPaths }}")) {
+          foreach ($file in (ConvertFrom-Json -InputObject "${{ env.ProjectPaths }}")) {
               Write-Host "file: $file"
           }
