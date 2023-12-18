@@ -1,0 +1,29 @@
+name: Test
+
+on:
+  pull_request:
+    types:
+      - closed
+
+permissions:
+  contents: read
+
+  
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+
+  test:
+
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+    
+      - name: Publish NuGet package
+        shell: bash
+        run: echo "Hello world on Close"
